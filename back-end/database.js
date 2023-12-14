@@ -9,10 +9,10 @@ const host = process.env['DATABASE_HOST'];
 
 const client = new pg.Client({
     user,
-    host,
-    database,
     password,
+    database,
     port,
+    host,
 })
 
 module.exports = client
