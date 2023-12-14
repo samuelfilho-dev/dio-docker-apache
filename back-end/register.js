@@ -1,3 +1,5 @@
+const client = require('./database.js')
+
 function saveData() {
     // Obtenha os valores dos campos
     const firstName = document.getElementById("firstName").value;
@@ -5,7 +7,7 @@ function saveData() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Crie um objeto com os dados
+
     const userData = {
         firstName: firstName,
         lastName: lastName,
@@ -13,5 +15,4 @@ function saveData() {
         password: password
     };
 
-    
 }

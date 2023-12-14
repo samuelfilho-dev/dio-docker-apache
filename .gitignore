@@ -2,3 +2,4 @@ db
 .idea
 .env
 node_modules
+back-end/.env
