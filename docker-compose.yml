@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  web:
+    image: httpd
+    container_name: dio-apache
+    ports:
+      - "80:80"
+    volumes:
+      - C:\Projetos\dio\dio-docker-apache:/usr/local/apache2/htdocs
+  db:
+    image: postgres:14-alpine
+    container_name: database
+    ports:
+      - "5432:5432"
+    volumes:
+      - C:\Projetos\dio\dio-docker-apache\db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "senha123"
+      POSTGRES_DB: "dio_apache"
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
