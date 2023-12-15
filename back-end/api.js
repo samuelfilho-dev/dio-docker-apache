@@ -1,8 +1,7 @@
-const express = require('express');
-const {response} = require("express");
-const cors = require('cors')
-const bodyParser = require('body-parser');
-const client = require('./database')
+import express from 'express';
+import cors from "cors";
+import bodyParser from "body-parser";
+import {client} from "./database.js";
 
 const app = express();
 
@@ -34,6 +33,22 @@ app.post('/api/v1/users', async (req, res) => {
 
 
 })
+
+
+app.post('/api/v1/login', async (req, res) => {
+
+    const {username, password} = req.body;
+
+    await client.connect();
+    const result = await client.query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password]);
+    await client.end();
+
+    if (result.rows.length > 1) {
+        return res.status(200).send({'message': 'Login Bem-sucedido'});
+    } else {
+        return res.status(400).send({'message': 'Erro no Login'});
+    }
+});
 
 app.listen(3000, () => {
     console.log(`Servidor rodando em http://localhost:3000`);

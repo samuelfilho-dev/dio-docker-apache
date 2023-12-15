@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Cadastro</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login-style.css">
 </head>
 <body>
 
@@ -23,29 +23,7 @@
 
     <button type="submit" onclick="saveUser()">Cadastrar</button>
 </form>
-<script>
-    function saveUser() {
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+<script src="cadastrar.js"></script>
 
-        fetch('http://localhost:3000/api/v1/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({firstName, lastName, username, password}),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Usuário cadastrado com sucesso:', data);
-                // Aqui você pode redirecionar o usuário para outra página, exibir uma mensagem, etc.
-            })
-            .catch(error => {
-                console.error('Erro ao cadastrar usuário:', error);
-            });
-    }
-</script>
 </body>
 </html>

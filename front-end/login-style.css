@@ -8,12 +8,19 @@ body {
     height: 100vh;
 }
 
+.login-container {
+    text-align: center;
+}
+
 form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
 }
 
 label {
@@ -42,7 +49,6 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Estilo para o link de cadastro na tela de login */
 a {
     color: #1e88e5;
     text-decoration: none;
@@ -51,3 +57,4 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
