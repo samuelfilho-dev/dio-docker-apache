@@ -10,7 +10,6 @@ function login(){
         body: JSON.stringify({username: 'bea', password: 'senha123'})
     })
         .then(response => {
-            localStorage.setItem('response', response)
           if (response.status === 200){
               window.location.href = 'index.html'
           }else{
