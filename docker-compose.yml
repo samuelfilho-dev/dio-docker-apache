@@ -8,6 +8,16 @@ services:
       - "80:80"
     volumes:
       - C:\Projetos\dio\dio-docker-apache:/usr/local/apache2/htdocs
+    networks:
+      - apache-net
+  api:
+    build: ./back-end/
+    container_name: api
+    ports:
+      - "3000:3000"
+    volumes:
+      - C:\Projetos\dio\dio-docker-apache:/usr/src/app/data
+
   db:
     image: postgres:14-alpine
     container_name: database
@@ -18,7 +28,15 @@ services:
     environment:
       POSTGRES_PASSWORD: "senha123"
       POSTGRES_DB: "dio_apache"
+    networks:
+      - apache-net
   adminer:
     image: adminer
     ports:
       - "8080:8080"
+    networks:
+      - apache-net
+
+networks:
+  apache-net:
+    driver: bridge
