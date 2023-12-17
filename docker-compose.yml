@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - C:\Projetos\dio\dio-docker-apache:/usr/local/apache2/htdocs
+      - C:\Projetos\dio\dio-docker-apache\front-end:/usr/local/apache2/htdocs
     networks:
       - apache-net
   api:
