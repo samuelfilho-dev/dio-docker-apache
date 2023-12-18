@@ -6,11 +6,10 @@ export const getConnection = async () => {
         password: 'senha123',
         database: 'dio_apache',
         port: 5432,
-        host: 'localhost',
+        host: 'db',
     })
 
     await client.connect()
-
     return client
 }
 

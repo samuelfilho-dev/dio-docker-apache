@@ -4,7 +4,7 @@ function saveUser() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch('http://api:3000/api/v1/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
