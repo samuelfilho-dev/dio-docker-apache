@@ -1,27 +1,22 @@
-function login(){
+async function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost:3000/api/v1/login', {
+    const response = await fetch("http://api:3000/api/v1/login", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({username: 'bea', password: 'senha123'})
+        body: JSON.stringify({username, password})
     })
-        .then(response => {
-          if (response.status === 200){
-              window.location.href = 'index.html'
-          }else{
-              window.location.href = 'login.html'
-          }
-        })
-        .then(data => console.log(data))
-        .catch(error => {
-            console.error('Error no login', error);
-            displayErrorMessage(error.message)
-        });
 
+    if (response.status === 200) {
+        localStorage.setItem('user', 'esta logado')
+        window.location.href = 'index.html'
+    } else {
+        window.location.href = 'login.html'
+        throw new Error('Erro no login')
+    }
 }
 
 function displayErrorMessage(message) {
@@ -29,3 +24,5 @@ function displayErrorMessage(message) {
     errorContainer.innerText = message;
     errorContainer.style.color = 'red';
 }
+
+
