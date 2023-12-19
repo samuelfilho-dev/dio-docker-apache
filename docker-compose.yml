@@ -8,7 +8,6 @@ services:
       - "80:80"
     volumes:
       - C:\Projetos\dio\dio-docker-apache\front-end:/usr/local/apache2/htdocs
-      - C:\Projetos\dio\dio-docker-apache\front-end\httpd.conf:/usr/local/apache2/conf/httpd.conf
     networks:
       - apache-net
   api:
