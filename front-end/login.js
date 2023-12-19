@@ -10,12 +10,16 @@ async function login() {
         body: JSON.stringify({username, password})
     })
 
+    console.info("Response bem-sucedida")
+
     if (response.status === 200) {
         localStorage.setItem('user', 'esta logado')
+        console.info("Login bem-sucedido")
         window.location.href = 'index.html'
     } else {
         window.location.href = 'login.html'
-        throw new Error('Erro no login')
+        console.info("Error no Login")
+        throw new Error('Error no login')
     }
 }
 
