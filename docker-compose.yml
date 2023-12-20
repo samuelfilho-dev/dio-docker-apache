@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - C:\Projetos\dio\dio-docker-apache\front-end:/usr/local/apache2/htdocs
+      - apache_data:/usr/local/apache2/htdocs
     networks:
       - apache-net
   api:
@@ -23,7 +23,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - C:\Projetos\dio\dio-docker-apache\db:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: "senha123"
       POSTGRES_DB: "dio_apache"
@@ -35,6 +35,11 @@ services:
       - "8080:8080"
     networks:
       - apache-net
+
+volumes:
+  db_data:
+  apache_data:
+
 
 networks:
   apache-net:
