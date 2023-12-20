@@ -6,8 +6,6 @@ loginForm.addEventListener('submit', event => {
     const formData = new FormData(loginForm);
     const data = Object.fromEntries(formData);
 
-    console.log(data);
-
     const response = fetch("http://localhost:3000/api/v1/login", {
         method: "POST",
         headers: {
@@ -19,7 +17,6 @@ loginForm.addEventListener('submit', event => {
     response.then(res => {
         console.log(res);
         if (res.status === 200) {
-            console.info("O Login deu certo")
             localStorage.setItem("user", "esta logado");
             window.location.href = "index.html";
         } else {
