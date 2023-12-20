@@ -23,7 +23,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data
+      - ./create.sql:/docker-entrypoint-initdb.d/create.sql
     environment:
       POSTGRES_PASSWORD: "senha123"
       POSTGRES_DB: "dio_apache"
@@ -35,10 +36,6 @@ services:
       - "8080:8080"
     networks:
       - apache-net
-
-volumes:
-  db_data:
-
 
 networks:
   apache-net:
