@@ -24,5 +24,5 @@ loginForm.addEventListener('submit', event => {
             window.location.href = "login.html";
         }
     });
-})
+});
 
