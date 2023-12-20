@@ -1,32 +1,31 @@
-async function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+const loginForm = document.getElementById('login-form');
 
-    const response = await fetch("http://api:3000/api/v1/login", {
-        method: 'POST',
+loginForm.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const formData = new FormData(loginForm);
+    const data = Object.fromEntries(formData);
+
+    console.log(data);
+
+    const response = fetch("http://localhost:3000/api/v1/login", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify({username, password})
-    })
+        body: JSON.stringify(data)
+    });
 
-    console.info("Response bem-sucedida")
-
-    if (response.status === 200) {
-        localStorage.setItem('user', 'esta logado')
-        console.info("Login bem-sucedido")
-        window.location.href = 'index.html'
-    } else {
-        window.location.href = 'login.html'
-        console.info("Error no Login")
-        throw new Error('Error no login')
-    }
-}
-
-function displayErrorMessage(message) {
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.innerText = message;
-    errorContainer.style.color = 'red';
-}
-
+    response.then(res => {
+        console.log(res);
+        if (res.status === 200) {
+            console.info("O Login deu certo")
+            localStorage.setItem("user", "esta logado");
+            window.location.href = "index.html";
+        } else {
+            console.error("O Login deu errado");
+            window.location.href = "login.html";
+        }
+    });
+})
 

@@ -13,6 +13,6 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node api.js"
+    "start": "node api.js --host 0.0.0.0:3000"
   }
 }
