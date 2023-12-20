@@ -20,3 +20,7 @@ function saveUser() {
             console.error('Erro ao cadastrar usuário:', error);
         });
 }
+
+function goToLogin() {
+    window.location.href = "login.html";
+}
