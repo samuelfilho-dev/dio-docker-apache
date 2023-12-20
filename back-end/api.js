@@ -42,7 +42,7 @@ app.post('/api/v1/login', async (req, res) => {
 
     try {
         console.info("Inicio do Login");
-        const result = await (await getConnection()).query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password])
+        const result = await (await getConnection()).query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password]);
         if (result.rows.length > 0) {
             console.info("Sucesso no login");
             return res.status(200).send({'message': 'Login Bem-sucedido'});
