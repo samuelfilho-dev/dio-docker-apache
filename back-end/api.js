@@ -18,7 +18,18 @@ app.get('/api/v1/users', async (req, res) => {
         console.error("Erro na seleção de usuarios");
         return res.status(500).send({'message': error.message})
     }
-})
+});
+
+app.get('/api/v1/products', async (req, res) => {
+    try {
+        console.info("Todos Produtos selecionados");
+        const result = (await getConnection()).query('SELECT * FROM products');
+        return res.status(200).json((await result).rows);
+    } catch (error) {
+        console.error("Erro na seleção de Produtos");
+        return res.status(500).send({'message': error.message});
+    }
+});
 
 app.post('/api/v1/users', async (req, res) => {
     const {firstName, lastName, username, password} = req.body;
@@ -33,7 +44,22 @@ app.post('/api/v1/users', async (req, res) => {
     }
 
 
-})
+});
+
+app.post('/api/v1/products', async (req, res) => {
+    const {name, price, description} = req.body;
+
+    try {
+        console.info("Produto Cadastrado");
+        const result = await (await getConnection()).query('INSERT INTO products (name, price, description) VALUES ($1, $2, $3) RETURNING *', [name, price, description])
+        return res.status(201).json((await result).rows[0]);
+    } catch (error) {
+        console.error("Erro no cadastro de Produto");
+        return res.status(500).send({'message': error.message});
+    }
+
+
+});
 
 
 app.post('/api/v1/login', async (req, res) => {
