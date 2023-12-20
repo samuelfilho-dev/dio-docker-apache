@@ -15,7 +15,6 @@ loginForm.addEventListener('submit', event => {
     });
 
     response.then(res => {
-        console.log(res);
         if (res.status === 200) {
             localStorage.setItem("user", "esta logado");
             window.location.href = "index.html";
